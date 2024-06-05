@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-var url = 'mongodb://localhost:27017/';
+var url = 'mongodb://mongodb:27017/';
 
 app.post('/signup', async (req, res) => {
     const id = randomBytes(4).toString('hex');
@@ -34,7 +34,7 @@ app.post('/signup', async (req, res) => {
         });
     });
 
-    await axios.post('http://localhost:4009/events', {
+    await axios.post('http://event-bus:4009/events', {
         type: 'UserCreated',
         data: {
             id, email
